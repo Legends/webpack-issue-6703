@@ -67,22 +67,20 @@ module.exports = function (env) {
     },
     optimization: {
       minimize: isDist,
-      removeEmptyChunks: true,
       runtimeChunk: false,
       splitChunks: {
         cacheGroups: {
-          bundle: {
+          default: {
             chunks: 'initial',
             name: 'bundle',
             priority: -20,
-            reuseExistingChunk: true
           },
           vendor: {
             chunks: 'initial',
             name: 'vendor',
             priority: -10,
-            test: /node_modules\/(.*)\.js/
-          }
+            test: /[\\/]node_modules[\\/]/,
+          },
         }
       }
     },
